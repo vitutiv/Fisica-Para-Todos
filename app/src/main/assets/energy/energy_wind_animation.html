@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+	</head>
+	<body>
+		<script src="../js/jquery.min.js"> </script>
+		<script src="../js/jquery.keyframes.min.js"> </script>
+		<div id="eolic_park_frame" class="views" style="width:100%; height:100%; overflow:hidden;">
+			<script>
+					$(document).ready(function() {
+
+						$("#eolic_park_frame .blades").each(function(){
+							$(this).css("transform-origin", $(this).siblings().first().children("circle").attr("cx") + "px " + $(this).siblings().first().children("circle").attr("cy") + "px").css("transform", "rotate("+Math.random()*(360/3)+"deg)");
+						});
+						$.keyframe.define([
+							{
+								name: 'beach_wave',
+								'from': {'transform' : 'translatex(-20px)'},
+								'to': {'transform' : 'translatex(20px)'}
+							},{
+								name: 'keyf_clouds',
+								'from': { 'transform': 'translatex(-20)', 'opacity': '0'},
+								'10%':  { 'opacity':   '0.85'},
+								'75%':  { 'opacity':   '0.85'},
+								'85%':  { 'opacity':   '0'},
+								'to':   { 'transform': 'translatex(2560px)', 'opacity': '0'}
+							}
+						]);
+						$("#eolic_park_frame #sea_shade").find('.animate').each(function(){
+							$(this).playKeyframe({
+									name: 'beach_wave',
+									duration: Math.random()+2+'s',
+									timingFunction: 'ease-in-out',
+									iterationCount: 'infinite',
+									direction: 'alternate'
+								},function(){}
+							);
+						})
+						$("#eolic_park_frame #the_beach").find('*').not('g').each(function(){
+							$(this).playKeyframe({
+									name: 'beach_wave',
+									duration: Math.random()*2+2+'s',
+									timingFunction: 'ease-in-out',
+									iterationCount: 'infinite',
+									direction: 'alternate'
+								},function(){}
+							);
+						});
+
+						$("#eolic_park_frame .clouds").each(function(){
+							$(this).playKeyframe({
+									name: 'keyf_clouds',
+									duration: Math.random()*30+20+'s',
+									timingFunction: 'linear',
+									iterationCount: 'infinite',
+									direction: 'normal'
+								},function(){});
+						});
+
+					});
+					// 		#cloud_01{animation: keyf_cloud_01 linear 50s infinite;}
+					// 		#cloud_02{animation: keyf_cloud_02 linear 40s infinite;}
+			</script>
+
+			<style scoped>
+				*{padding: 0; top:0;bottom:0;left:0;right:0}
+				/* foreground */
+				.str0 {stroke:#ffb300; stroke-width:25}
+				.deep_water {fill:#00b0ff}
+				.fil16 {fill:#00b9ff}
+				.fil17 {fill:#00c3ff}
+				.shallow_water {fill:#00ccff}
+				.fil21 {fill:#09a06d}
+				.fil7 {fill:#212121}
+				.fil20 {fill:#3dc676}
+				.fil6 {fill:#78909c}
+				.fil18 {fill:#965012}
+				.fil4 {fill:#b0bec5}
+				.fil19 {fill:#bc6c15}
+				.fil3 {fill:#eceff1}
+				.fil10 {fill:#ede8ad}
+				.fil8 {fill:#f7f1b3}
+				.sand_mountain_dark {fill:#feca38}
+				.beach_sand {fill:#fed563}
+				.fil11 {fill:#fee371}
+				.fil0 {fill:#ff8a16}
+				.fil13 {fill:#ffb300}
+				.fil22 {fill:#ffc114}
+				.fil12 {fill:#ffca28}
+				.fil1 {fill:#ffea00}
+				.fil5 {fill:white}
+				.wet_sand {fill:#edc65a}
+
+				@keyframes blade_animation {
+					from { transform: rotate(0deg); }
+					to { transform: rotate(360deg); }
+				}
+
+				@keyframes sea_animation{
+					from { transform: rotate(0deg); }
+					to { transform: rotate(360deg); }
+				}
+
+				.blades{
+					animation-name: blade_animation;
+					animation-timing-function: linear;
+					animation-iteration-count: infinite;
+				}
+				.back{animation-duration: 25s;}
+				.middle{animation-duration: 20s;}
+				.front{animation-duration: 15s;}
+
+				#the_beach, #front_sand_mountains, #trunk{
+					shape-rendering: crispedges;
+				}
+
+				div{
+					position:absolute;
+					width: 100%;
+					height: 100%;
+					top:0; left:0; right:0; bottom:0; padding:0;
+				}
+
+				@keyframes keyf_cloud_01 {
+					from { transform: translatex(-40%) scale(1.5,1.5) translatey(15%); opacity: 0}
+					25%{opacity: 0}
+					35%{opacity: 0.85}
+					75%{opacity: 0.85}
+					85%{opacity: 0}
+					to {  transform: translatex(100%) scale(1.5,1.5) translatey(15%); opacity: 0}
+				}
+				@keyframes keyf_cloud_02 {
+					from { transform: translatex(-20%) scale(3.5,3) translatey(2%); opacity: 0}
+					10%{opacity: 0.85}
+					65%{opacity: 0.85}
+					75%{opacity: 0}
+					to {  transform: translatex(100%) scale(3.5,3) translatey(2%); opacity: 0}
+				}
+				@keyframes keyf_sun {
+					from { transform: translatey(45%); }
+					to {  transform: translatey(0%); }
+				}
+				@keyframes keyf_sky {
+					from {background-color: #191970}
+					to {background-color: #ff8a16}
+				}
+				@keyframes keyf_night_dim {
+					from{filter:brightness(0.2);}
+					to{filter: brightness(1);}
+				}
+				@keyframes keyf_night_dim_sun {
+					from{filter:brightness(0.8);}
+					to{filter: brightness(1);}
+				}
+				/* #cloud_01{animation: keyf_cloud_01 linear 50s infinite;}
+				#cloud_02{animation: keyf_cloud_02 linear 40s infinite;} */
+				#sun{animation: keyf_sun 1 60s ease-out;}
+				#sky{ animation: keyf_sky 1 30s linear; animation-fill-mode: forwards;}
+				.dim_foreground{animation: keyf_night_dim 1 30s linear;}
+				.dim_backgroud {animation: keyf_night_dim_sun 1 10s linear ;}
+
+				svg{
+					shape-rendering:geometricprecision;
+					fill-rule:evenodd;
+					clip-rule:evenodd"
+				}
+			</style>
+			<div id="background" style="z-index: -1; overflow:hidden;">
+				<div id="sky" style="width: 100%; height: 65%;  position:relative; z-index: -1"></div>
+				<svg id="svg_sun" width="100%" height="100%" viewbox="0 0 2560 1600" style="position:absolute; z-index:0; top:0">
+					<defs>
+						<path id="cloud" style="fill:white;fill-opacity:0.85" d="m0 60c117,6 196,-137 296,0l-296 0z" cx="100%"/>
+					</defs>
+					<circle id="sun" class="fil1 str0" cy="66.56%" cx="50%" r="970"/>
+					<g id="clouds_group">
+						<use href="#cloud" class="clouds" id="cloud_01" y="40px"></use>
+						<use href="#cloud" class="clouds" id="cloud_02" y="500px"></use>
+						<use href="#cloud" class="clouds" id="cloud_03" y="360px"></use>
+						<use href="#cloud" class="clouds" id="cloud_04" y="160px"></use>
+					</g>
+				</svg>
+				<div class="dim_foreground" id="sea" style="width: 100%; height: 100%; background-color:#00b0ff; position:relative; z-index: 1;"></div>
+			</div>
+			<div id="foreground" class="dim_foreground" style="z-index: 0">
+				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 2560 1600" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+
+					<g id="background">
+						<!-- <path id="sun" class="fil1 str0" d="m1278 1075l-977 0c0,-540 437,-977 977,-977 540,0 977,437 977,977l-977 0z"/> -->
+						<rect id="sea" class="deep_water" y="66.56%" width="100%" height="350%"/>
+					</g>
+					<g id="foreground">
+						<g id="wind_turbine_07">
+							<g>
+								<circle class="fil4" cx="1945" cy="683" r="7"/>
+								<polygon class="fil4" points="1951,846 1938,846 1941,683 1948,683 "/>
+							</g>
+							<g class="blades back" >
+								<polygon class="fil5" points="2015,625 2018,629 1945,683 1951,662 "/>
+								<polygon class="fil5" points="1960,772 1955,773 1945,683 1960,699 "/>
+								<polygon class="fil5" points="1860,651 1862,646 1945,683 1923,688 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="1945" cy="683" r="5"/>
+									<circle class="fil7" cx="1945" cy="683" r="1"/>
+								</g>
+							</g>
+						</g>
+						<g id="sand_mountains">
+							<g>
+								<g>
+									<polygon class="fil8" points="1801,689 1801,878 2026,878 1914,784 "/>
+									<g>
+										<polygon class="sand_mountain_dark" points="1801,689 1801,878 1576,878 1688,784 "/>
+										<path class="sand_mountain_dark" d="m1801 733l0 11c11,0 21,-5 21,-11 0,-6 -9,-11 -21,-11l0 11z"/>
+										<path class="sand_mountain_dark" d="m1801 785l0 16c16,0 29,-7 29,-16 0,-9 -13,-16 -29,-16l0 16z"/>
+										<path class="sand_mountain_dark" d="m1801 856l0 22c21,0 37,-10 37,-22 0,-12 -17,-22 -37,-22l0 22z"/>
+									</g>
+									<g>
+										<path class="fil8" d="m1801 757l0 13c-13,0 -24,-6 -24,-13 0,-7 11,-13 24,-13l0 13z"/>
+										<path class="fil8" d="m1801 818l0 17c-17,0 -31,-7 -31,-17 0,-9 14,-17 31,-17l0 17z"/>
+										<path class="fil8" d="m1801 713l0 8c-9,0 -16,-4 -16,-8 0,-5 7,-8 16,-8l0 8z"/>
+									</g>
+								</g>
+								<ellipse class="fil8" cx="1545" cy="942" rx="378" ry="154"/>
+							</g>
+							<g>
+								<g>
+									<g>
+										<polygon class="fil8" points="872,596 872,807 1113,807 993,702 "/>
+										<g>
+											<polygon class="sand_mountain_dark" points="872,596 872,807 630,807 751,702 "/>
+											<path class="sand_mountain_dark" d="m872 645l0 12c12,0 22,-6 22,-12 0,-7 -10,-12 -22,-12l0 12z"/>
+											<path class="sand_mountain_dark" d="m872 704l0 18c17,0 31,-8 31,-18 0,-10 -14,-18 -31,-18l0 18z"/>
+											<path class="sand_mountain_dark" d="m872 783l0 25c22,0 40,-11 40,-25 0,-14 -18,-25 -40,-25l0 25z"/>
+										</g>
+										<g>
+											<path class="fil8" d="m872 671l0 15c-14,0 -26,-6 -26,-15 0,-8 12,-15 26,-15l0 15z"/>
+											<path class="fil8" d="m872 740l0 18c-18,0 -33,-8 -33,-18 0,-10 15,-18 33,-18l0 18z"/>
+											<path class="fil8" d="m872 623l0 9c-9,0 -17,-4 -17,-9 0,-5 7,-9 17,-9l0 9z"/>
+										</g>
+									</g>
+									<ellipse class="fil8" cx="874" cy="935" rx="402" ry="165"/>
+								</g>
+								<g>
+									<ellipse class="fil8" cx="1838" cy="974" rx="308" ry="127"/>
+									<g>
+										<g>
+											<polygon class="fil8" points="1276,694 1276,882 1518,882 1397,788 "/>
+											<g>
+												<polygon class="sand_mountain_dark" points="1276,694 1276,882 1035,882 1155,788 "/>
+												<path class="sand_mountain_dark" d="m1276 737l0 11c12,0 22,-5 22,-11 0,-6 -10,-11 -22,-11l0 11z"/>
+												<path class="sand_mountain_dark" d="m1276 790l0 16c17,0 31,-7 31,-16 0,-9 -14,-16 -31,-16l0 16z"/>
+												<path class="sand_mountain_dark" d="m1276 860l0 22c22,0 40,-10 40,-22 0,-12 -18,-22 -40,-22l0 22z"/>
+											</g>
+											<g>
+												<path class="fil8" d="m1276 761l0 13c-14,0 -26,-6 -26,-13 0,-7 12,-13 26,-13l0 13z"/>
+												<path class="fil8" d="m1276 822l0 16c-18,0 -33,-7 -33,-16 0,-9 15,-16 33,-16l0 16z"/>
+												<path class="fil8" d="m1276 718l0 8c-9,0 -17,-4 -17,-8 0,-5 7,-8 17,-8l0 8z"/>
+											</g>
+										</g>
+										<ellipse class="fil10" cx="1014" cy="979" rx="480" ry="118"/>
+									</g>
+								</g>
+							</g>
+						</g>
+						<g id="front_sand_mountains">
+							<rect class="fil11" x="215" y="1027" width="2123" height="75" rx="37" ry="37"/>
+							<g>
+								<g>
+									<path class="fil11" d="m1031 890c122,0 130,137 261,137 -18,0 -502,0 -522,0 131,0 139,-137 261,-137z"/>
+									<path class="fil12" d="m1031 941c77,0 82,86 164,86 -11,0 -315,0 -328,0 82,0 87,-86 164,-86z"/>
+								</g>
+								<g>
+									<path class="fil11" d="m1513 890c122,0 130,137 261,137 -18,0 -502,0 -522,0 131,0 139,-137 261,-137z"/>
+									<path class="fil12" d="m1513 941c77,0 82,86 164,86 -11,0 -315,0 -328,0 82,0 87,-86 164,-86z"/>
+								</g>
+								<g>
+									<g>
+										<path class="fil11" d="m511 890c122,0 130,137 261,137 -18,0 -502,0 -522,0 131,0 139,-137 261,-137z"/>
+										<path class="fil12" d="m511 941c77,0 82,86 164,86 -11,0 -315,0 -328,0 82,0 87,-86 164,-86z"/>
+									</g>
+									<path class="fil13" d="m511 980c42,0 45,47 90,47 -6,0 -172,0 -179,0 45,0 48,-47 89,-47z"/>
+								</g>
+								<g>
+									<g>
+										<path class="fil11" d="m2032 890c122,0 130,137 261,137 -18,0 -502,0 -522,0 131,0 139,-137 261,-137z"/>
+										<path class="fil12" d="m2032 941c77,0 82,86 164,86 -11,0 -315,0 -328,0 82,0 87,-86 164,-86z"/>
+									</g>
+									<path class="fil13" d="m2032 980c42,0 45,47 90,47 -6,0 -172,0 -179,0 45,0 48,-47 89,-47z"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_06">
+							<g>
+								<circle class="fil4" cx="592" cy="606" r="10"/>
+								<polygon class="fil4" points="601,849 582,849 587,606 597,606 "/>
+							</g>
+							<g class="blades back">
+								<polygon class="fil5" points="695,520 700,526 592,606 601,575 "/>
+								<polygon class="fil5" points="614,738 607,740 592,606 614,630 "/>
+								<polygon class="fil5" points="466,559 469,552 592,606 560,613 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="592" cy="606" r="7"/>
+									<circle class="fil7" cx="592" cy="606" r="2"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_05">
+							<g>
+								<circle class="fil4" cx="1002" cy="564" r="10"/>
+								<polygon class="fil4" points="1012,807 993,807 997,564 1007,564 "/>
+							</g>
+							<g class="blades back">
+								<polygon class="fil5" points="1106,479 1111,485 1002,564 1012,533 "/>
+								<polygon class="fil5" points="1025,697 1017,698 1002,564 1024,588 "/>
+								<polygon class="fil5" points="876,518 879,510 1002,564 970,572 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="1002" cy="564" r="7"/>
+									<circle class="fil7" cx="1002" cy="564" r="2"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_04">
+							<g>
+								<circle class="fil4" cx="1490" cy="589" r="10"/>
+								<polygon class="fil4" points="1500,831 1481,831 1485,589 1495,589 "/>
+							</g>
+							<g class="blades back">
+								<polygon class="fil5" points="1593,503 1598,509 1490,589 1499,558 "/>
+								<polygon class="fil5" points="1512,721 1505,722 1490,589 1512,612 "/>
+								<polygon class="fil5" points="1364,542 1367,535 1490,589 1458,596 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="1490" cy="589" r="7"/>
+									<circle class="fil7" cx="1490" cy="589" r="2"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_03">
+							<g>
+								<circle class="fil4" cx="784" cy="549" r="16"/>
+								<polygon class="fil4" points="798,910 770,910 776,549 792,549 "/>
+							</g>
+							<g class="blades middle">
+								<polygon class="fil5" points="938,421 945,430 784,549 798,502 "/>
+								<polygon class="fil5" points="817,746 806,748 784,549 817,584 "/>
+								<polygon class="fil5" points="597,479 601,468 784,549 737,560 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="784" cy="549" r="11"/>
+									<circle class="fil7" cx="784" cy="549" r="3"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_02">
+							<g>
+								<circle class="fil4" cx="1728" cy="600" r="16"/>
+								<polygon class="fil4" points="1742,961 1714,961 1720,600 1735,600 "/>
+							</g>
+							<g class="blades middle">
+								<polygon class="fil5" points="1882,473 1889,482 1728,600 1742,554 "/>
+								<polygon class="fil5" points="1761,797 1750,799 1728,600 1761,635 "/>
+								<polygon class="fil5" points="1540,530 1545,519 1728,600 1681,611 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="1728" cy="600" r="11"/>
+									<circle class="fil7" cx="1728" cy="600" r="3"/>
+								</g>
+							</g>
+						</g>
+						<g id="wind_turbine_01">
+							<g>
+								<circle class="fil4" cx="1277" cy="360" r="26"/>
+								<polygon class="fil4" points="1300,957 1253,957 1264,360 1289,360 "/>
+							</g>
+							<g class="blades front">
+								<polygon class="fil5" points="1531,150 1543,165 1277,360 1300,284 "/>
+								<polygon class="fil5" points="1332,686 1313,689 1277,360 1331,419 "/>
+								<polygon class="fil5" points="967,246 974,227 1277,360 1199,379 "/>
+							</g>
+							<g>
+								<g>
+									<circle class="fil6" cx="1277" cy="360" r="18"/>
+									<circle class="fil7" cx="1277" cy="360" r="5"/>
+								</g>
+							</g>
+						</g>
+						<g id="the_beach">
+					   <rect class="shallow_water" x="350" y="1358" width="1406" height="30" rx="15" ry="15"/>
+					   <g>
+					    <rect class="shallow_water" x="416" y="1336" width="1432" height="22" rx="11" ry="11"/>
+					    <rect class="deep_water" x="1651" y="1336" width="277" height="22" rx="11" ry="11"/>
+					    <rect class="deep_water" x="212" y="1336" width="369" height="22" rx="11" ry="11"/>
+					   </g>
+					   <g>
+					    <rect class="shallow_water" x="441" y="1301" width="475" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="1413" y="1301" width="411" height="35" rx="18" ry="18"/>
+					    <rect class="wet_sand" x="612" y="1301" width="1006" height="35" rx="18" ry="18"/>
+					   </g>
+					   <g>
+					    <rect class="wet_sand" x="461" y="1274" width="1074" height="27" rx="13" ry="13"/>
+					    <rect class="beach_sand" x="807" y="1274" width="616" height="27" rx="13" ry="13"/>
+					    <rect class="shallow_water" x="333" y="1274" width="406" height="27" rx="13" ry="13"/>
+					    <rect class="shallow_water" x="1454" y="1274" width="505" height="27" rx="13" ry="13"/>
+					    <rect class="deep_water" x="1753" y="1274" width="431" height="27" rx="13" ry="13"/>
+					    <rect class="deep_water" x="192" y="1274" width="368" height="27" rx="13" ry="13"/>
+					   </g>
+					   <g>
+					    <rect class="shallow_water" x="412" y="1254" width="422" height="20" rx="10" ry="10"/>
+					    <rect class="beach_sand" x="725" y="1254" width="1011" height="20" rx="10" ry="10"/>
+					    <rect class="shallow_water" x="1505" y="1254" width="385" height="20" rx="10" ry="10"/>
+					    <rect class="wet_sand" x="1356" y="1254" width="299" height="20" rx="10" ry="10"/>
+					    <rect class="wet_sand" x="587" y="1254" width="351" height="20" rx="10" ry="10"/>
+					   </g>
+					   <g>
+					    <rect class="wet_sand" x="512" y="1219" width="1359" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="401" y="1219" width="323" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="1563" y="1219" width="539" height="35" rx="18" ry="18"/>
+					    <rect class="deep_water" x="1719" y="1219" width="421" height="35" rx="18" ry="18"/>
+					    <rect class="deep_water" x="189" y="1219" width="341" height="35" rx="18" ry="18"/>
+					    <rect class="beach_sand" x="788" y="1219" width="673" height="35" rx="18" ry="18"/>
+					   </g>
+					   <g>
+					    <rect class="shallow_water" x="333" y="1184" width="583" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="1413" y="1184" width="463" height="35" rx="18" ry="18"/>
+					    <rect class="beach_sand" x="707" y="1184" width="900" height="35" rx="18" ry="18"/>
+					    <rect class="wet_sand" x="583" y="1184" width="333" height="35" rx="18" ry="18"/>
+					    <rect class="wet_sand" x="1391" y="1184" width="265" height="35" rx="18" ry="18"/>
+					   </g>
+					   <g>
+					    <rect class="wet_sand" x="545" y="1157" width="1293" height="27" rx="13" ry="13"/>
+					    <rect class="shallow_water" x="333" y="1157" width="406" height="27" rx="13" ry="13"/>
+					    <rect class="deep_water" x="228" y="1157" width="270" height="27" rx="13" ry="13"/>
+					    <rect class="shallow_water" x="1579" y="1157" width="478" height="27" rx="13" ry="13"/>
+					    <rect class="deep_water" x="1762" y="1157" width="371" height="27" rx="13" ry="13"/>
+					    <rect class="beach_sand" x="791" y="1157" width="719" height="27" rx="13" ry="13"/>
+					   </g>
+					   <g>
+					    <rect class="shallow_water" x="351" y="1137" width="483" height="20" rx="10" ry="10"/>
+					    <rect class="shallow_water" x="1494" y="1137" width="431" height="20" rx="10" ry="10"/>
+					    <rect class="beach_sand" x="670" y="1137" width="1000" height="20" rx="10" ry="10"/>
+					    <rect class="wet_sand" x="584" y="1137" width="295" height="20" rx="10" ry="10"/>
+					    <rect class="wet_sand" x="1443" y="1137" width="266" height="20" rx="10" ry="10"/>
+					   </g>
+					   <g>
+					    <rect class="wet_sand" x="512" y="1102" width="1359" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="370" y="1102" width="318" height="35" rx="18" ry="18"/>
+					    <rect class="deep_water" x="221" y="1102" width="241" height="35" rx="18" ry="18"/>
+					    <rect class="shallow_water" x="1599" y="1102" width="503" height="35" rx="18" ry="18"/>
+					    <rect class="deep_water" x="1787" y="1102" width="475" height="35" rx="18" ry="18"/>
+					    <rect class="beach_sand" x="746" y="1102" width="758" height="35" rx="18" ry="18"/>
+					   </g>
+					  </g>
+						<g id="island">
+							<g id="sea_shade">
+								<rect class="shallow_water" x="1980" y="1316" width="552" height="49" rx="25" ry="25"/>
+								<g>
+									<rect class="fil17" x="2162" y="1365" width="262" height="27" rx="13" ry="13"/>
+									<rect class="animate deep_water" x="2339" y="1365" width="188" height="27" rx="13" ry="13"/>
+									<rect class="animate deep_water" x="2057" y="1365" width="158" height="27" rx="13" ry="13"/>
+								</g>
+								<rect class="animate fil17" x="2157" y="1392" width="247" height="27" rx="14" ry="14"/>
+								<g>
+									<rect class="fil16" x="2157" y="1419" width="320" height="27" rx="14" ry="14"/>
+									<rect class="animate deep_water" x="2057" y="1419" width="158" height="27" rx="14" ry="14"/>
+									<rect class="animate deep_water" x="2367" y="1419" width="164" height="27" rx="14" ry="14"/>
+								</g>
+								<rect class="animate fil16" x="2177" y="1447" width="283" height="27" rx="14" ry="14"/>
+
+
+							</g>
+							<g id="not_sea">
+								<g id="ground">
+									<path class="beach_sand" d="m2261 1202c119,0 127,139 255,139 -18,0 -491,0 -511,0 128,0 136,-139 255,-139z"/>
+									<path class="fil12" d="m2261 1254c75,0 80,87 160,87 -11,0 -308,0 -320,0 80,0 85,-87 160,-87z"/>
+								</g>
+								<g id="palm_tree">
+									<g id="trunk">
+										<path class="fil18" d="m2261 1047c2,0 5,0 7,0 3,60 5,121 3,181l-10 0 0 -181z"/>
+										<path class="fil19" d="m2261 1047c-2,0 -5,0 -7,0 -3,60 -5,121 -3,181l10 0 0 -181z"/>
+									</g>
+									<g id="leafs">
+										<g>
+											<path class="fil20" d="m2214 1012c27,0 48,18 48,29 -50,0 -49,0 -97,0 0,-11 22,-29 48,-29z"/>
+											<path class="fil21" d="m2214 1012c27,0 48,18 48,29 -34,0 -44,0 -62,0 10,-29 0,0 10,-29 1,0 2,0 3,0z"/>
+										</g>
+										<g>
+											<path class="fil20" d="m2249 986c19,19 21,47 13,55 -36,-36 -35,-35 -68,-68 8,-8 36,-5 55,13z"/>
+											<path class="fil21" d="m2249 986c19,19 21,47 13,55 -24,-24 -31,-31 -44,-44 28,-13 0,0 28,-13 1,1 2,1 2,2z"/>
+										</g>
+										<g>
+											<path class="fil20" d="m2310 1012c-27,0 -48,18 -48,29 50,0 49,0 97,0 0,-11 -22,-29 -48,-29z"/>
+											<path class="fil21" d="m2310 1012c-27,0 -48,18 -48,29 34,0 44,0 62,0 -10,-29 0,0 -10,-29 -1,0 -2,0 -3,0z"/>
+										</g>
+										<g>
+											<path class="fil20" d="m2274 986c-18,19 -20,47 -12,55 35,-37 34,-36 66,-70 -8,-8 -36,-4 -54,15z"/>
+											<path class="fil21" d="m2274 986c-18,19 -20,47 -12,55 23,-24 31,-32 43,-45 -28,-13 0,0 -28,-13 -1,1 -2,1 -2,2z"/>
+										</g>
+										<g>
+											<path class="fil20" d="m2314 1064c-15,-22 -42,-29 -52,-23 29,41 28,40 55,79 9,-6 12,-34 -4,-56z"/>
+											<path class="fil21" d="m2314 1064c-15,-22 -42,-29 -52,-23 19,28 25,36 35,51 18,-25 0,0 18,-25 -1,-1 -1,-2 -2,-3z"/>
+										</g>
+										<g>
+											<path class="fil20" d="m2211 1064c15,-22 42,-29 52,-23 -29,41 -28,40 -55,79 -9,-6 -12,-34 4,-56z"/>
+											<path class="fil21" d="m2211 1064c15,-22 42,-29 52,-23 -19,28 -25,36 -35,51 -18,-25 0,0 -18,-25 1,-1 1,-2 2,-3z"/>
+										</g>
+									</g>
+									<g id="coconuts">
+										<g>
+											<path class="fil0" d="m2261 1038l-16 0c0,-9 7,-16 16,-16 9,0 16,7 16,16l-16 0z"/>
+											<path class="fil22" d="m2261 1038l16 0c0,9 -7,16 -16,16 -9,0 -16,-7 -16,-16l16 0z"/>
+										</g>
+										<g>
+											<path class="fil0" d="m2245 1066l-12 12c-6,-6 -6,-17 0,-23 6,-6 17,-6 23,0l-12 12z"/>
+											<path class="fil22" d="m2245 1066l12 -12c6,6 6,17 0,23 -6,6 -17,6 -23,0l12 -12z"/>
+										</g>
+										<g>
+											<path class="fil0" d="m2278 1066l-12 12c-6,-6 -6,-17 0,-23 6,-6 17,-6 23,0l-12 12z"/>
+											<path class="fil22" d="m2278 1066l12 -12c6,6 6,17 0,23 -6,6 -17,6 -23,0l12 -12z"/>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+	</body>
+</html>

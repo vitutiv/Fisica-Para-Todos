@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Default language: PT-BR
+    <string name="app_name">Física para Todos</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="version">1.01</string>
+    <string name="title_activity_help">Ajuda</string>
+
+    //Actionse
+    <string name="goBack">Voltar</string>
+    <string name="goForward">Avançar</string>
+    <string name="help">Ajuda</string>
+
+    //Categories
+    <string name="home">Início</string>
+    <string name="air">Ar</string>
+    <string name="water">Água</string>
+    <string name="energy">Energia</string>
+    <string name="motion">Movimento</string>
+    <string name="universe">Universo</string>
+    <string name="colors">Cores</string>
+    <string name="about">Sobre</string>
+    <string name="quit">Sair</string>
+    <string name="nightMode">Modo Noturno</string>
+
+    //Ratings
+    <string name="congratulations">Parabéns! \n %1$d</string>
+    <string name="good">Muito Bem! \n %1$d</string>
+    <string name="youCanImprove">Você pode melhorar! \n %1$d</string>
+    <string name="continueGame">Continuar</string>
+
+    //Messages
+    <string name="message_firstPage">Você está na página inicial</string>
+    <string name="message_lastPage">Você está na última página</string>
+    <string name="message_tapToClose">Pressione novamente para fechar o app</string>
+    <string name="message_unsupported">Ação não suportada</string>
+    <string name="message_duringQuiz">Você já tem alguma coisa aberta. Você deve terminá-la antes.</string>
+    <string name="message_androidVersionBelowLollipop">Desculpe, a sua versão do android não suporta este recurso</string>
+    <string name="message_databaseUnavailable">Desculpe, o banco de dados indisponível. Reinstale o aplicativo e tente novamente.</string>
+</resources>

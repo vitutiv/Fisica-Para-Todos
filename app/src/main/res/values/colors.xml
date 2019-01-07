@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //Default
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#111111</color>
+
+    //Air
+    <color name="airColorPrimary">#81d4fa</color>
+    <color name="airColorPrimaryDark">#4fc3f7</color>
+
+    //Water
+    <color name="waterColorPrimary">#31abdf</color>
+    <color name="waterColorPrimaryDark">#0090C3</color>
+
+    //Colors
+    <color name="colorsColorPrimary">#8bc34a</color>
+    <color name="colorsColorPrimaryDark">#689f38</color>
+
+    //Energy
+    <color name="energyColorPrimary">#ffd700</color>
+    <color name="energyColorPrimaryDark">#fbc02c</color>
+
+    //Motion
+    <color name="motionColorPrimary">#ff5922</color>
+    <color name="motionColorPrimaryDark">#e64b19</color>
+
+    //Universe
+    <color name="universeColorPrimary">#303f9f</color>
+    <color name="universeColorPrimaryDark">#1a237e</color>
+
+    <color name="correctAnswer">#4caf50</color>
+    <color name="wrongAnswer">#f44336</color>
+</resources>

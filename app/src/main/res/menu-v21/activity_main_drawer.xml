@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:checkable="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/nav_universe"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_universe"
+        android:title="@string/universe" />
+    <item
+        android:id="@+id/nav_water"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_water"
+        android:title="@string/water" />
+    <item
+        android:id="@+id/nav_air"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_air"
+        android:title="@string/air" />
+    <item
+        android:id="@+id/nav_colors"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_colors"
+        android:title="@string/colors" />
+    <item
+        android:id="@+id/nav_energy"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_energy"
+        android:title="@string/energy" />
+    <item
+        android:id="@+id/nav_motion"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_motion"
+        android:title="@string/motion" />
+    <item
+        android:id="@+id/nav_about"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_info"
+        android:title="@string/about" />
+    <item
+        android:id="@+id/nav_nightMode"
+        android:checkable="false"
+        android:icon="@drawable/ic_checkbox_disabled"
+        android:title="@string/nightMode" />
+    <item
+        android:checkable="false"
+        android:enabled="false"
+        android:title=""/>
+</menu>
